@@ -1,3 +1,6 @@
+> [!WARNING]  
+> Currently time picker only works with Svelte Runes!
+
 # Time Picker Component for Svelte
 
 This project is a Svelte adaptation of the [TimePickerInput](https://time.openstatus.dev/) component, originally built with React and Shadcn UI. The Svelte version utilizes [svelte-shadcn](https://next.shadcn-svelte.com/docs/installation/sveltekit) components to provide a customizable and accessible time picker for your applications.
@@ -53,6 +56,7 @@ Additionally, install the necessary svelte-shadcn components:
    Ensure these packages are added to your `package.json` and installed in your project.
 
 4. **Copy main snippets**
+   
    Copy [`time-picker-input.svelte`](./src/lib/snippets/time-picker-input.svelte) and [`time-picker-utils.ts`](./src/lib/snippets/time-picker-utils.ts) into your project. (For example into `$lib/components/ui/time-picker`)
 
 ## Usage
