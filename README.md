@@ -11,9 +11,16 @@ This project is a Svelte adaptation of the [TimePickerInput](https://time.openst
 - **Date Formatting**: Formats date values for display.
 - **Mobile Optimization**: Enhances mobile keyboard interactions for time input.
 
+## Demo
+- **Docs/Demo**: [link](https://time-picker.nouro.app/)
+- **REPL playground**: [link](https://www.sveltelab.dev/zjcmgpaa2tzlylx)
+
 ## Installation
 
-**Note**: This component currently works only with SvelteKit projects. Attempting to set up shadcn-svelte on a Svelte project without SvelteKit may result in issues, as the initial CLI init command fails due to the absence of `svelte-kit sync` .
+**Note**: This component currently works only with SvelteKit projects. Attempting to set up shadcn-svelte on a Svelte project without SvelteKit may result in issues.
+
+> [!TIP]  
+> Time picker can be used without shadncn, but you should a little change code (few lines)
 
 Before integrating the time picker component, ensure your project includes the following dependencies:
 
