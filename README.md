@@ -49,7 +49,10 @@ Additionally, install the necessary svelte-shadcn components:
 2. **Add the required components**:
 
    ```bash
-   npx shadcn-svelte@latest add input select calendar popover button
+   npx shadcn-svelte@latest add input
+
+   # Optional
+   npx shadcn-svelte@latest add select label calendar popover
    ```
 
    This command will add the specified components to your project.
