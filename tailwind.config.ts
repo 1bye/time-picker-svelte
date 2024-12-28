@@ -7,6 +7,9 @@ const config: Config = {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	safelist: ["dark"],
 	theme: {
+		backgroundImage: {
+			"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+		  },
 		container: {
 			center: true,
 			padding: "2rem",
@@ -67,7 +70,8 @@ const config: Config = {
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: ["Open Sans", ...fontFamily.sans],
+				cal: ["Open Sans"],
 			},
 			keyframes: {
 				"accordion-down": {

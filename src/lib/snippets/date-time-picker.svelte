@@ -14,12 +14,16 @@
     import TimePicker from "./time-picker.svelte";
   
     const df = new DateFormatter("en-US", {
-      dateStyle: "long",
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hourCycle: 'h23'
     });
   
     let contentRef = $state<HTMLElement | null>(null);
     let dateValue = $state<DateValue>();
-    let time = $state(new Time(0, 0));
   
     let {
       date = $bindable(
@@ -31,6 +35,8 @@
       setDate?: (date: DateValue) => void;
     } = $props();
   
+    let time = $state(new Time(date?.hour ?? 0, date?.minute ?? 0));
+
     function onValueChange(_date: DateValue | undefined) {
       date = date?.set({
         year: _date?.year,
@@ -69,14 +75,16 @@
       {date ? df.format(date.toDate(getLocalTimeZone())) : "Pick a date"}
     </Popover.Trigger>
     <Popover.Content bind:ref={contentRef} class="w-auto p-0">
-      <Calendar {onValueChange} type="single" bind:value={dateValue} />
+      <div class="flex p-2 border-b">
+        <TimePicker
+          bind:time
+          setTime={(time) => {
+            time && setTime(time);
+          }}
+        />
+      </div>
 
-      <TimePicker
-        bind:time
-        setTime={(time) => {
-          time && setTime(time);
-        }}
-      />
+      <Calendar {onValueChange} type="single" bind:value={dateValue} />
     </Popover.Content>
   </Popover.Root>
   

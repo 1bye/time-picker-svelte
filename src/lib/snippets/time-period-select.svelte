@@ -20,6 +20,7 @@
 	import { display12HourValue, setDateByType } from './time-picker-utils';
 	import { Time } from '@internationalized/date';
 	import * as Select from '$lib/components/ui/select';
+	import { onMount } from 'svelte';
 
 	let {
 		period = $bindable('PM'),
@@ -31,6 +32,20 @@
 		setPeriod,
 		setTime
 	}: PeriodSelectorProps = $props();
+
+	function handlePeriod() {
+		const tempTime = time.copy();
+		const hours = display12HourValue(time.hour);
+		const _time = setDateByType(
+			tempTime,
+			hours.toString(),
+			'12hours',
+			period === 'AM' ? 'PM' : 'AM'
+		);
+
+		time = _time;
+		setTime?.(_time);
+	}
 
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.key === 'ArrowRight') onRightFocus?.();
@@ -46,19 +61,13 @@
 		 * otherwise user must manually change the hour each time
 		 */
 		if (time) {
-			const tempTime = time.copy();
-			const hours = display12HourValue(time.hour);
-			const _time = setDateByType(
-				tempTime,
-				hours.toString(),
-				'12hours',
-				period === 'AM' ? 'PM' : 'AM'
-			);
-
-			time = _time;
-			setTime?.(_time);
+			handlePeriod();
 		}
 	}
+
+	onMount(() => {
+		handlePeriod();
+	});
 </script>
 
 <div class="flex h-10 items-center">
@@ -70,8 +79,8 @@
 		<Select.Trigger
 			bind:ref
 			class="w-[65px] focus:bg-accent focus:text-accent-foreground"
-			onkeydown={handleKeyDown}
-		></Select.Trigger>
+			onkeydown={handleKeyDown}>{period ?? ''}</Select.Trigger
+		>
 		<Select.Content>
 			<Select.Item value="AM">AM</Select.Item>
 			<Select.Item value="PM">PM</Select.Item>
