@@ -12,8 +12,8 @@
 
 <MetaTags
 	title="Time picker"
-	titleTemplate="%s | Svelte"
-	description="A simple svelte shadcn/ui TimePicker component"
+	titleTemplate="%s | Svelte / SvelteKit"
+	description="A simple svelte shadcn/ui TimePicker component. With 12 and 24 hour style "
 	openGraph={{
 		url: 'https://time-picker.nouro.app',
 		title: 'Svelte time picker',
