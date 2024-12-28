@@ -1,4 +1,4 @@
-<script module lang="ts">
+<script lang="ts" module>
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import type { WithElementRef } from 'bits-ui';
 	import type { Time as TimeType } from '@internationalized/date';

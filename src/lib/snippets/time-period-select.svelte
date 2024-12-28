@@ -1,4 +1,4 @@
-<script module lang="ts">
+<script lang="ts" module>
 	import type { Time as TimeType } from '@internationalized/date';
 	import type { Period } from './time-picker-utils';
 	import type { WithElementRef } from 'bits-ui';
