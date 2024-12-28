@@ -41,6 +41,7 @@
 			bind:time
 			bind:ref={hourRef}
 			{setTime}
+			{period}
 			onRightFocus={() => minuteRef?.focus()}
 		/>
 	</div>
@@ -59,7 +60,6 @@
 			bind:time
 			bind:ref={minuteRef}
 			{setTime}
-			{period}
 			onLeftFocus={() => hourRef?.focus()}
 			onRightFocus={() => secondRef?.focus()}
 		/>
