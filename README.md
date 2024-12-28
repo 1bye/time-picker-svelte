@@ -20,7 +20,7 @@ This project is a Svelte adaptation of the [TimePickerInput](https://time.openst
 **Note**: This component currently works only with SvelteKit projects. Attempting to set up shadcn-svelte on a Svelte project without SvelteKit may result in issues.
 
 > [!TIP]  
-> Time picker can be used without shadncn, but you should a little change code (few lines)
+> Time picker can be used without shadcn, but you should a little change code (few lines)
 
 Before integrating the time picker component, ensure your project includes the following dependencies:
 
