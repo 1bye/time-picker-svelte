@@ -3,12 +3,13 @@
 	import { Snippet } from '$lib/components/ui/snippet';
 	import * as Accordion from '$lib/components/ui/accordion';
 	import { ModeToggle } from '$lib/components/theme/toggle-mode';
-	import { Github, Globe, Twitter } from 'lucide-svelte';
+	import { Github } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
-	import TimePicker12HourWrapper from '$lib/snippets/time-picker-12h.svelte';
-	import TimePickerWrapper from '$lib/snippets/time-picker.svelte';
-	import DateTimePicker from '$lib/snippets/date-time-picker.svelte';
+	import TimePicker12HourWrapper from '$lib/snippets/shadcn-svelte-runes/time-picker-12h.svelte';
+	import TimePickerWrapper from '$lib/snippets/shadcn-svelte-runes/time-picker.svelte';
+	import DateTimePicker from '$lib/snippets/shadcn-svelte-runes/date-time-picker.svelte';
 	import { Time, getLocalTimeZone, now, CalendarDateTime } from '@internationalized/date';
+	import * as Tabs from '$lib/components/ui/tabs';
 
 	let {
 		data
@@ -18,7 +19,12 @@
 		};
 	} = $props();
 
-	const snippets = $state(data.snippets);
+	const snippets = $state(data.snippets.reduce((x, y) => {
+		(x[y.folder] = (x[y.folder] || [])).push(y);
+
+		return x;
+	}, {}));
+	const snippetKeys = Object.keys(snippets);
 
 	const _date = now(getLocalTimeZone());
 	const _time = new Time(_date.hour, _date.minute, _date.second, _date.millisecond);
@@ -34,6 +40,8 @@
 			_date.millisecond
 		)
 	);
+
+	let currentKey = $state(snippetKeys[0]);
 	let time = $state(_time);
 	let time2 = $state(_time);
 </script>
@@ -61,7 +69,7 @@
 		<div class="mx-auto mt-12 grid max-w-2xl gap-4 text-center">
 			<h1 class="font-cal text-3xl">Time Picker</h1>
 			<p class="text-muted-foreground">
-				A <code>{`<TimePickerInput />`}</code> component built with Svelte and Shadcn UI (Svelte).
+				A <code>{`<TimePickerInput />`}</code> component built with Svelte and Shadcn UI or Headless.
 			</p>
 			<div>
 				<DateTimePicker bind:date />
@@ -98,13 +106,16 @@
 							>
 								shadcn/ui
 							</a>
-							and <a
+							(optional)
+							and
+							<a
 								href="https://react-spectrum.adobe.com/internationalized/date/index.html"
 								target="_blank"
 								class="underline hover:no-underline"
 							>
-							@internationalized/date
-							</a> include input component
+								@internationalized/date
+							</a>
+							include input component
 							<a
 								href="https://next.shadcn-svelte.com/docs/components/input"
 								target="_blank"
@@ -150,19 +161,30 @@
 			</div>
 			<div class="flex flex-col gap-3 border-t border-border pt-4">
 				<h3 class="font-cal text-xl">Snippets</h3>
-				<Accordion.Root type="single">
-					{#each snippets as snippet (snippet.slug)}
-						<Accordion.Item value={snippet.file}>
-							<Accordion.Trigger id={snippet.file}>
-								<code>{snippet.file}</code>
-							</Accordion.Trigger>
 
-							<Accordion.Content>
-								<Snippet {...snippet} />
-							</Accordion.Content>
-						</Accordion.Item>
-					{/each}
-				</Accordion.Root>
+				<Tabs.Root bind:value={currentKey} class="w-full">
+					<Tabs.List class="grid w-full grid-cols-4">
+						{#each snippetKeys as snippetKey}
+							<Tabs.Trigger value={snippetKey}>{snippetKey}</Tabs.Trigger>
+						{/each}
+					</Tabs.List>
+				</Tabs.Root>
+
+				{#if snippets[currentKey]}
+					<Accordion.Root type="single">
+						{#each snippets[currentKey] as snippet (snippet.slug)}
+							<Accordion.Item value={snippet.file}>
+								<Accordion.Trigger id={snippet.file}>
+									<code>{snippet.file}</code>
+								</Accordion.Trigger>
+
+								<Accordion.Content>
+									<Snippet {...snippet} />
+								</Accordion.Content>
+							</Accordion.Item>
+						{/each}
+					</Accordion.Root>
+				{/if}
 			</div>
 		</div>
 		<div>
@@ -176,10 +198,8 @@
 
 				<br />
 
-				adapted to Svelte by <a
-					href="https://github.com/1bye"
-					class="text-foreground underline hover:no-underline"
-				>
+				adapted to Svelte by
+				<a href="https://github.com/1bye" class="text-foreground underline hover:no-underline">
 					1bye
 				</a>
 			</p>
