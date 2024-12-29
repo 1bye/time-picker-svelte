@@ -1,5 +1,5 @@
-> [!WARNING]  
-> Currently time picker only works with Svelte Runes!
+> [!TIP] 
+> Now time picker works with Svelte 4 and Svelte5 as shadcn or headless!
 
 # Time Picker Component for Svelte
 
@@ -17,7 +17,7 @@ This project is a Svelte adaptation of the [TimePickerInput](https://time.openst
 
 ## Installation
 
-**Note**: This component currently works only with SvelteKit projects. Attempting to set up shadcn-svelte on a Svelte project without SvelteKit may result in issues.
+**Note**: This component currently works only with SvelteKit projects. Attempting to set up shadcn-svelte on a Svelte project without SvelteKit may result in issues. (But you can use it as headless)
 
 > [!TIP]  
 > Time picker can be used without shadcn, but you should a little change code (few lines)
@@ -36,7 +36,7 @@ Additionally, install the necessary svelte-shadcn components:
 - Popover (optional, for date and time selection)
 - Button (optional, for date and time selection)
 
-### Steps to Install
+### Steps to Install (shadcn/ui)
 
 1. **Initialize shadcn-svelte in your SvelteKit project**:
 
@@ -60,18 +60,32 @@ Additionally, install the necessary svelte-shadcn components:
 3. **Install additional dependencies**:
 
    ```bash
-   npm install bits-ui @internationalized/date
+   npm install @internationalized/date
    ```
 
    Ensure these packages are added to your `package.json` and installed in your project.
 
 4. **Copy main snippets**
    
-   Copy [`time-picker-input.svelte`](./src/lib/snippets/time-picker-input.svelte) and [`time-picker-utils.ts`](./src/lib/snippets/time-picker-utils.ts) into your project. (For example into `$lib/components/ui/time-picker`)
+   Copy [`time-picker-input.svelte`](./src/lib/snippets/shadcn-svelte-runes/time-picker-input.svelte) and [`time-picker-utils.ts`](./src/lib/snippets/shadcn-svelte-runes/time-picker-utils.ts) into your project. (For example into `$lib/components/ui/time-picker`)
+
+### Steps to Install (Headless)
+
+1. **Install dependencies**:
+
+   ```bash
+   npm install @internationalized/date
+   ```
+
+   Ensure these packages are added to your `package.json` and installed in your project.
+
+2. **Copy main snippets**
+   
+   Copy [`time-picker-input.svelte`](./src/lib/snippets/svelte-runes/time-picker-input.svelte) and [`time-picker-utils.ts`](./src/lib/snippets/svelte-runes/time-picker-utils.ts) into your project. (For example into `$lib/components/ui/time-picker`)
 
 ## Usage
 
-After installation, you can [copy snippets](./src/lib/snippets/) and use the time picker components in your Svelte files.
+After installation, you can [copy snippets](./src/lib/snippets/) and use the time picker components in your Svelte files. (can be without shadcn)
 
 Customize the component as needed to fit your application's requirements.
 
