@@ -41,7 +41,7 @@
 		)
 	);
 
-	let currentKey = $state(snippetKeys[0]);
+	let currentKey = $state(snippetKeys[1]);
 	let time = $state(_time);
 	let time2 = $state(_time);
 </script>
