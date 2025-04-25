@@ -1,5 +1,5 @@
 > [!TIP] 
-> Now time picker works with Svelte 4 and Svelte5 as shadcn or headless!
+> Now time picker works with Svelte 4 and Svelte 5 as shadcn or headless!
 
 # Time Picker Component for Svelte
 
