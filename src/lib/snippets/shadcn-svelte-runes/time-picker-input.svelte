@@ -71,7 +71,11 @@
 		const raw = flag ? cur[0] + key : key + cur[1];
 		let num = Number.parseInt(raw, 10);
 
-		num = picker === '12hours' ? Math.min(Math.max(num, 1), 12) : Math.min(Math.max(num, 0), 23);
+		num = picker === '12hours' ? Math.min(Math.max(num, 1), 12) :
+			(picker === "hours"
+				? Math.min(Math.max(num, 0), 23)
+				: Math.min(Math.max(num, 0), 60)
+			);
 
 		return String(num).padStart(2, '0');
 	}
