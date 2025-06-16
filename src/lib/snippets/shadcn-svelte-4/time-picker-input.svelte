@@ -113,7 +113,7 @@
 	id={id || picker}
 	name={name || picker}
 	class={cn(
-		'w-[48px] text-center font-mono text-base tabular-nums caret-transparent focus:bg-accent focus:text-accent-foreground [&::-webkit-inner-spin-button]:appearance-none',
+		'time-picker-input',
 		className
 	)}
 	value={value || calculatedValue}
